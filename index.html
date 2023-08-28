@@ -1,0 +1,149 @@
+<style>
+  .container {
+    width: 2480px;
+    height: 3508px;
+    border: 1px solid black;
+    background-image: url('./4x400.jpeg');
+    background-size: 70vh;  /* Cover the entire element */
+    background-position: center -20%;  /* Center the image */
+    background-repeat: no-repeat;  /* Do not repeat the image */
+  }
+
+  .results-container {
+      width: 100%;
+      height: 500px;
+      background-color: #d24435;
+      clip-path: polygon(0 0, 100% 0, 100% 350px, 0 500px);
+      position: relative;
+      z-index: 1;
+  }
+
+  .blue-container {
+      width: 100%;
+      height: 500px;
+      background-color: #4a76b5;
+      position: relative;
+      top: -280px;
+      z-index: 0;
+      clip-path: polygon(0 0, 100% 0, 100% 350px, 0 500px);
+  }
+
+  .text-overlay {
+      position: absolute;
+      letter-spacing: 20px;
+      font-size: 6em;
+      top: 0px;
+      left: 120px;
+      z-index: 2;
+      font-family: "Al Bayan",serif;
+      font-weight: bold;
+      color: antiquewhite;
+      text-shadow: 4px 6px 25px black;
+  }
+
+  .text-overlay2 {
+      position: absolute;
+      letter-spacing: 20px;
+      font-size: 4em;
+      top: 180px;
+      left: 120px;
+      z-index: 2;
+      font-family: "Al Bayan",serif;
+      font-weight: bold;
+      color: antiquewhite;
+      text-shadow: 4px 6px 25px black;
+  }
+
+  .blue-overlay {
+      position: absolute;
+      color: white;
+      font-size: 90px;
+      top: 260px;
+      left: 40px;
+      rotate: -3.5deg;
+      z-index: 2;
+
+  }
+
+  .sec {
+      font-size: 2em;
+  }
+
+  table {
+      margin-top: 1500px;
+      margin-left: 120px;
+      font-size: 55px;
+      width: 90%;
+      font-weight: bolder;
+      /*margin: auto;*/
+      background-color: lightgray;
+      opacity: 0.8;
+  }
+
+  th, td {
+      padding:9px;
+      text-align: center;
+      border: 2px solid black;
+  }
+
+  th {
+      background-color: darkgoldenrod;
+  }
+
+
+</style>
+<meta charset="UTF-8">
+<div class="container">
+  <div class="results-container">
+    <div class="text-overlay2"><span class="sec">Sztafeta 4x400m</span></div>
+    <div class="text-overlay">Puchar Starosty Pilskiego</span></div>
+  </div>
+  <div class="blue-container">
+    <div class="blue-overlay">WIECZORNY MITYNG LEKKOATLETYCZNY 25.08.2023 r.</div>
+  </div>
+
+  <table>
+
+  </table>
+</div>
+
+<script>
+  const data =
+  // const czterystaK =
+    '1,STARSZAK I PRZYJACIELE,MARCIN,OSIEK NAD NOTECIĄ,Osiek nad Notecią,1982,4:04.35\n' +
+    '2,HOFFMAN,PASZAL,PIŁA,GWDA Junior,2008,4:05.01\n' +
+    '3,SZYMCZAK,JACEK,CZARNKÓW,KB Gmina Czarnków,1973,4:09.86\n' +
+    '4,BAZIK,KAZEK,DOLASZEWO,Gwardia Piła,1971,4:26.56\n' +
+    '5,SALWA,EWELINA,PIŁA,4 Run Team Piła,2011,4:32.85\n' +
+    '6,PIŃKOWSKI,JAROSŁAW,SZYDŁOWO,PLKS Gwda Piła,1978,4:35.64\n' +
+    '7,BOIŃSKA,AGNIESZKA,PIŁA,WOLFTEAM,1978,5:17.10'
+
+  const ary = data.split('\n')
+  for (let el of ary) {
+    el = el.split(',')
+    console.log(el[0], el.length)
+  }
+
+  const insertTableIntoContainer = (data) => {
+    let html = '<table border="1">';
+    html += '<tr><th>Miejsce</th><th>Klub</th><th>Wynik</th></tr>';
+
+    const rows = data.split('\n');
+    for (const row of rows) {
+      const cols = row.split(',');
+      html += `<tr><td style="width: 70px;">${cols[0]}</td><td>${cols[4]}</td><td>${cols[6]}</td></tr>`;
+    }
+
+    html += '</table>';
+
+    const tableContainer = document.querySelector('.container table');
+    tableContainer.innerHTML = html;
+  }
+
+  insertTableIntoContainer(data);
+
+
+</script>
+
+
+
